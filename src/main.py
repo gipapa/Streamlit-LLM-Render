@@ -39,7 +39,7 @@ def make_request_backup(question_input: str):
     return response
 
 def make_request(question_input: str):    
-    chat = ChatGroq(temperature=0.5, model="llama3-70b-8192", api_key=userdata.get('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'))
+    chat = ChatGroq(temperature=0.5, model="llama3-70b-8192", api_key='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')
     system = "You are a helpful assistant."
     human = "{text}"
     prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
