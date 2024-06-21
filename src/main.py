@@ -44,8 +44,8 @@ def make_request(question_input: str):
     human = "{text}"
     prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
     chain = prompt | chat
-    chain.invoke({"text": "Explain the importance of low latency for LLMs."})
-    return chain.content
+    return chain.invoke({"text": "Explain the importance of low latency for LLMs."}).content     
+    
 
 
 
