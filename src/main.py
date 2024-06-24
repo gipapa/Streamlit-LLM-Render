@@ -29,7 +29,7 @@ st.markdown("""---""")
 openai.api_key = api_key_input
 
 
-def make_request(question_input: str):
+def make_request_backup(question_input: str):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -38,7 +38,7 @@ def make_request(question_input: str):
     )
     return response
 
-def make_request_b(question_input: str):    
+def make_request(question_input: str):    
     chat = ChatGroq(temperature=0.5, model="llama3-70b-8192", api_key='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')
     system = "You are a helpful assistant."
     human = "{text}"
@@ -63,6 +63,8 @@ else:
 
 if response:
     st.write("Response:")
+    st.response
+'''    
     st.write(response["choices"][0]["message"]["content"])
 
     prompt_tokens = response["usage"]["prompt_tokens"]
@@ -81,3 +83,4 @@ with st.sidebar:
     st.write("Completion tokens used/Completion toekn使用量:", completion_tokes)
     st.write("Total tokens used/token使用總量:", total_tokens_used)
     st.write("Total cost of request/全部花費: ${:.8f}".format(cost_of_response))
+'''
