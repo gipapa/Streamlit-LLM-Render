@@ -12,19 +12,14 @@ st.header("Streamlit plus groq")
 st.markdown("""---""")
 
 question_input = st.text_input("Enter question/prompt! 輸入問題/提示！")
-#api_key_input = st.text_input("Enter Your OPENAI api key! 輸入你的OPENAI api key！")
 rerun_button = st.button("run")
 
 st.markdown("""---""")
 
-
-#API_KEY = os.getenv("OPENAI_API_KEY")
-openai.api_key = api_key_input
-
-
+API_KEY = os.getenv("GROQ-token")
 
 def make_request(question_input: str):    
-    chat = ChatGroq(temperature=0.5, model="llama3-70b-8192", api_key='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')
+    chat = ChatGroq(temperature=0.5, model="llama3-70b-8192", api_key=API_KEY)
     system = "You are a helpful assistant."
     human = "{text}"
     prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
