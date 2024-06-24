@@ -63,7 +63,7 @@ else:
 
 if response:
     st.write("Response:")
-    st.response
+    st.write(response)
 '''    
     st.write(response["choices"][0]["message"]["content"])
 
