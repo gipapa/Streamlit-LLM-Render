@@ -10,9 +10,9 @@ from langchain_groq import ChatGroq
 import streamlit as st
 import os
 
-MODEL = "llama3-70b-8192"
 
 def app():
+    MODEL = "llama3-70b-8192"
     st.set_page_config(page_title="Chat with search and momery", page_icon="🦜")
     st.title('Chat with search and momery')
     st.write("🦜LangChain")
