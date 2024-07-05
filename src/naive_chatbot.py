@@ -4,10 +4,11 @@ import openai, os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 
-API_KEY = os.getenv("GROQ-token")
-MODEL = "llama3-70b-8192"
+def app(GROQ_SETTING):
 
-def app():
+    API_KEY = GROQ_SETTING['API_KEY']
+    MODEL = GROQ_SETTING['MODEL']
+    TEMPERATURE= GROQ_SETTING['TEMPERATURE']
 
     response = False
     
@@ -25,7 +26,7 @@ def app():
     
 
     def make_request(question_input: str):    
-        chat = ChatGroq(temperature=0.5, model=MODEL, api_key=API_KEY)
+        chat = ChatGroq(temperature=TEMPERATURE, model=MODEL, api_key=API_KEY, streaming=True)
         system = "You are a helpful assistant."
         human = "{text}"
         prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])

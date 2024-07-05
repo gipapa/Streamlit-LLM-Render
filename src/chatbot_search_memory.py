@@ -10,10 +10,12 @@ from langchain_groq import ChatGroq
 import streamlit as st
 import os
 
-MODEL = "llama3-70b-8192"
-API_KEY = os.getenv("GROQ-token")
-def app():        
-    st.title('Chat with search and momery')
+def app(GROQ_SETTING):        
+    API_KEY = GROQ_SETTING['API_KEY']
+    MODEL = GROQ_SETTING['MODEL']
+    TEMPERATURE= GROQ_SETTING['TEMPERATURE']
+
+    st.title('Chatbot with search and momery')
     st.write("🦜LangChain")
     st.write(f"✨groq({MODEL})")
     st.write("🦆DuckDuckGo")
@@ -52,7 +54,7 @@ def app():
             st.stop()
 
         #llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True)
-        llm = ChatGroq(temperature=0.5, model=MODEL, api_key=API_KEY)
+        llm = ChatGroq(temperature=TEMPERATURE, model=MODEL, api_key=API_KEY, streaming=True)
         tools = [DuckDuckGoSearchRun(name="Search")]
         chat_agent = ConversationalChatAgent.from_llm_and_tools(llm=llm, tools=tools)
         executor = AgentExecutor.from_agent_and_tools(
