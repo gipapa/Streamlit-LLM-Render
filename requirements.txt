@@ -6,3 +6,4 @@ altair<5
 langchain-groq
 langchain
 langchain_community
+duckduckgo-search
