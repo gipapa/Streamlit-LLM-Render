@@ -8,6 +8,7 @@ from langchain_core.runnables import RunnableConfig
 from langchain_groq import ChatGroq
 
 import streamlit as st
+import os
 
 st.set_page_config(page_title="LangChain: Chat with search", page_icon="🦜")
 st.title("🦜 LangChain: Chat with search")
