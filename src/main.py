@@ -10,8 +10,12 @@ from langchain_groq import ChatGroq
 import streamlit as st
 import os
 
+MODEL = "llama3-70b-8192"
+
 st.set_page_config(page_title="LangChain: Chat with search", page_icon="🦜")
-st.title("🦜 LangChain: Chat with search")
+st.title(f"🦜LangChain+✨groq({MODEL})+🦆DuckDuckGo")
+
+
 
 #openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 openai_api_key = '123'
@@ -46,7 +50,7 @@ if prompt := st.chat_input(placeholder="Could you tell me who won the NBA final 
         st.stop()
 
     #llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True)
-    llm = ChatGroq(temperature=0.5, model="llama3-70b-8192", api_key=API_KEY)
+    llm = ChatGroq(temperature=0.5, model=MODEL, api_key=API_KEY)
     tools = [DuckDuckGoSearchRun(name="Search")]
     chat_agent = ConversationalChatAgent.from_llm_and_tools(llm=llm, tools=tools)
     executor = AgentExecutor.from_agent_and_tools(
