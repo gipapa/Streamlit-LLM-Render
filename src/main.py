@@ -8,6 +8,7 @@ PAGES = {
 }
 
 st.sidebar.title('Chatbot Garden')
+st.set_page_config(page_title="Gipapa Chatbot POC", page_icon="🦜")
 selection = st.sidebar.radio('choose and go', list(PAGES.keys()))
 page = PAGES[selection]
 page.app()
