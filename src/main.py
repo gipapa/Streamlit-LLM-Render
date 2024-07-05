@@ -8,6 +8,6 @@ PAGES = {
 }
 
 st.sidebar.title('Chatbot Garden')
-selection = st.sidebar.radiio('choose and go', list(PAGES.keys()))
+selection = st.sidebar.radio('choose and go', list(PAGES.keys()))
 page = PAGES[selection]
 page.app()
