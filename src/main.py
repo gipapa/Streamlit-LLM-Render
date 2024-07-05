@@ -4,9 +4,9 @@ import chatbot_search_memory
 import streamlit as st
 
 GROQ_SETTING = {
-    'API_KEY' = os.getenv("GROQ-token"),
-    'MODEL' = "llama3-70b-8192",
-    'TEMPERATURE'='0.5'
+    'API_KEY' :os.getenv("GROQ-token"),
+    'MODEL' :"llama3-70b-8192",
+    'TEMPERATURE':'0.5'
 }
 
 PAGES = {
