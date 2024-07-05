@@ -3,8 +3,8 @@ import chatbot_search_memory
 
 import streamlit as st
 PAGES = {
-    'naive_chatbot': naive_chatbot,
-    'chatbot_search_memory': chatbot_search_memory
+    '原生的無狀態對話機器人': naive_chatbot,
+    '可紀錄對話歷史,上網查詢相關內容': chatbot_search_memory
 }
 
 st.set_page_config(page_title="Gipapa Chatbot POC", page_icon="🦜")
