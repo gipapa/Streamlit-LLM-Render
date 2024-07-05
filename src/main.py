@@ -12,10 +12,11 @@ import os
 
 MODEL = "llama3-70b-8192"
 
-st.set_page_config(page_title="LangChain: Chat with search", page_icon="🦜")
-st.title("🦜LangChain")
-st.title(f"✨groq({MODEL})")
-st.title("🦆DuckDuckGo")
+st.set_page_config(page_title="Chat with search and momery", page_icon="🦜")
+st.title('Chat with search and momery')
+st.write("🦜LangChain")
+st.write(f"✨groq({MODEL})")
+st.write("🦆DuckDuckGo")
 
 
 
