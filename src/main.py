@@ -2,6 +2,7 @@ import naive_chatbot
 import chatbot_search_memory
 
 import streamlit as st
+import os
 
 GROQ_SETTING = {
     'API_KEY' :os.getenv("GROQ-token"),
