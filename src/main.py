@@ -28,7 +28,7 @@ model_selection = st.sidebar.radio('models from qroq', MODELS)
 
 GROQ_SETTING = {
     'API_KEY' :os.getenv("GROQ-token"),
-    'MODEL' : MODELS[model_selection],
+    'MODEL' : model_selection,
     'TEMPERATURE':'0.5'
 }
 
