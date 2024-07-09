@@ -1,7 +1,9 @@
 # RAG service in Render
 Streamlit-groq-langchain-Render: 使用各種套件來快速建置Web app於平台Render
+
 demo url: https://web-p174.onrender.com/
-demo url(in CHT OA): https://safeweb.secure365.hinet.net/https://web-p174.onrender.com/
+
+demo url (in CHT OA): https://safeweb.secure365.hinet.net/https://web-p174.onrender.com/
 
  - forked from
     - joeychrys/streamlit-chatGPT/ (streamlit+chatgpt)
