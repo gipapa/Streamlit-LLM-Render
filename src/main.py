@@ -5,15 +5,15 @@ import streamlit as st
 import os
 
 PAGES = {
-    '🤖原生的無狀態對話機器人': naive_chatbot,
-    '🤖可紀錄對話歷史,上網查詢相關內容': chatbot_search_memory
+    '🤖可紀錄對話歷史,上網查詢相關內容': chatbot_search_memory,
+    '🤖原生的無狀態對話機器人': naive_chatbot,    
 }
 
 MODELS = [
-    'gemma2-9b-it',
-    'gemma-7b-it',
     'llama3-70b-8192',
     'llama3-8b-8192',
+    'gemma2-9b-it',
+    'gemma-7b-it',    
     'mixtral-8x7b-32768',    
 ]
 
