@@ -31,7 +31,7 @@ def sidebar_selections():
     
     st.sidebar.title('Models')
     model_selection = st.sidebar.selectbox('Choose a model:', 
-                                           list(MODELS.values()),
+                                           list(MODELS.keys()),
                                            index=list(MODELS.keys()).index(st.session_state.model_selection),
                                            format_func=lambda x: MODELS[x],
                                            key='model_selectbox')
