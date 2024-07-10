@@ -21,6 +21,8 @@ def initialize_session_state():
         st.session_state.page_selection = list(PAGES.keys())[0]
     if 'model_selection' not in st.session_state:
         st.session_state.model_selection = list(MODELS.keys())[0]
+    if 'temperature' not in st.session_state:
+        st.session_state.temperature = 0.5
 
 def sidebar_selections():
     st.sidebar.title('Chatbot Garden')
@@ -28,7 +30,9 @@ def sidebar_selections():
                                           list(PAGES.keys()),
                                           index=list(PAGES.keys()).index(st.session_state.page_selection),
                                           key='page_selectbox')
-    
+    st.sidebar.markdown("""---""")
+    st.sidebar.title('Setting')
+    st.sidebar.markdown("""---""")
     st.sidebar.title('Models')
     model_selection = st.sidebar.selectbox('Choose a model:', 
                                            list(MODELS.keys()),
@@ -36,21 +40,37 @@ def sidebar_selections():
                                            format_func=lambda x: MODELS[x],
                                            key='model_selectbox')
     
+    st.sidebar.title('Temperature')
+    temperature = st.sidebar.text_input('Temperature:', 
+                                        value=str(st.session_state.temperature),
+                                        key='temperature_input')
+    
+    # Convert temperature to float and validate
+    try:
+        temperature = float(temperature)
+        if temperature < 0 or temperature > 1:
+            st.sidebar.warning('Temperature should be between 0 and 1')
+            temperature = st.session_state.temperature
+    except ValueError:
+        st.sidebar.warning('Please enter a valid number for temperature')
+        temperature = st.session_state.temperature
+    
     st.session_state.page_selection = page_selection
     st.session_state.model_selection = model_selection
+    st.session_state.temperature = temperature
     
-    return page_selection, model_selection
+    return page_selection, model_selection, temperature
 
 def main():
     st.set_page_config(page_title="Gipapa Chatbot POC", page_icon="🦜")
     
     initialize_session_state()
-    page_selection, model_selection = sidebar_selections()
+    page_selection, model_selection, temperature = sidebar_selections()
     
     GROQ_SETTING = {
         'API_KEY': os.getenv("GROQ-token"),
         'MODEL': model_selection,
-        'TEMPERATURE': '0.5'
+        'TEMPERATURE': str(temperature)
     }
     
     page = PAGES[page_selection]
