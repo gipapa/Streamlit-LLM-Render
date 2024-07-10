@@ -32,15 +32,12 @@ def sidebar_selections():
                                           key='page_selectbox')
     st.sidebar.markdown("""---""")
     st.sidebar.title('Setting')
-    st.sidebar.markdown("""---""")
-    st.sidebar.title('Models')
-    model_selection = st.sidebar.selectbox('Choose a model:', 
+    model_selection = st.sidebar.selectbox('Language model:', 
                                            list(MODELS.keys()),
                                            index=list(MODELS.keys()).index(st.session_state.model_selection),
                                            format_func=lambda x: MODELS[x],
-                                           key='model_selectbox')
+                                           key='model_selectbox')        
     
-    st.sidebar.title('Temperature')
     temperature = st.sidebar.text_input('Temperature:', 
                                         value=str(st.session_state.temperature),
                                         key='temperature_input')
