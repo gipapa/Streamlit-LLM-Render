@@ -5,8 +5,16 @@ import os
 from streamlit_card import card
 
 PAGES = {
-    '🤖可紀錄對話歷史,上網查詢相關內容': chatbot_search_memory,
-    '🤖原生的無狀態對話機器人': naive_chatbot,    
+    'chatbot_search_memory': {
+        'title': 'chatbot_search_memory',
+        'description': '🤖可紀錄對話歷史,上網查詢相關內容',
+        'module': chatbot_search_memory
+    },
+    'naive_chatbot': {
+        'title': 'naive_chatbot',
+        'description': '🤖原生的無狀態對話機器人',
+        'module': naive_chatbot
+    },
 }
 
 MODELS = {
@@ -57,10 +65,10 @@ def display_dashboard():
     
     col1, col2 = st.columns(2)
     
-    for idx, (title, page) in enumerate(PAGES.items()):
+    for idx, (key, page_info) in enumerate(PAGES.items()):
         with col1 if idx % 2 == 0 else col2:
-            if card(title=title, text="Click to open this chatbot", key=f"card_{idx}"):
-                st.session_state.page_selection = title
+            if card(title=page_info['title'], text=page_info['description'], key=f"card_{idx}"):
+                st.session_state.page_selection = key
 
 def main():
     st.set_page_config(page_title="Gipapa Chatbot POC", page_icon="🦜", layout="wide")
@@ -81,7 +89,7 @@ def main():
             st.session_state.page_selection = None
             st.experimental_rerun()
         
-        page = PAGES[st.session_state.page_selection]
+        page = PAGES[st.session_state.page_selection]['module']
         page.app(GROQ_SETTING)
 
 if __name__ == "__main__":
