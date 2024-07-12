@@ -6,12 +6,12 @@ from streamlit_card import card
 
 PAGES = {
     'chatbot_search_memory': {
-        'title': 'chatbot_search_memory',
+        'title': 'RAG bot',
         'description': '🤖可紀錄對話歷史,上網查詢相關內容',
         'module': chatbot_search_memory
     },
     'naive_chatbot': {
-        'title': 'naive_chatbot',
+        'title': 'bot',
         'description': '🤖原生的無狀態對話機器人',
         'module': naive_chatbot
     },
