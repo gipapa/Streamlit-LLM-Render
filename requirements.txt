@@ -7,3 +7,4 @@ langchain
 langchain_community
 duckduckgo-search
 streamlit
+streamlit_card
