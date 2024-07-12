@@ -2,6 +2,7 @@ import naive_chatbot
 import chatbot_search_memory
 import streamlit as st
 import os
+from streamlit_card import card
 
 PAGES = {
     '🤖可紀錄對話歷史,上網查詢相關內容': chatbot_search_memory,
@@ -18,19 +19,13 @@ MODELS = {
 
 def initialize_session_state():
     if 'page_selection' not in st.session_state:
-        st.session_state.page_selection = list(PAGES.keys())[0]
+        st.session_state.page_selection = None
     if 'model_selection' not in st.session_state:
         st.session_state.model_selection = list(MODELS.keys())[0]
     if 'temperature' not in st.session_state:
         st.session_state.temperature = 0.5
 
 def sidebar_selections():
-    st.sidebar.title('Chatbot Garden')
-    page_selection = st.sidebar.selectbox('Choose a chatbot:', 
-                                          list(PAGES.keys()),
-                                          index=list(PAGES.keys()).index(st.session_state.page_selection),
-                                          key='page_selectbox')
-    st.sidebar.markdown("""---""")
     st.sidebar.title('Setting')
     model_selection = st.sidebar.selectbox('Language model:', 
                                            list(MODELS.keys()),
@@ -52,17 +47,26 @@ def sidebar_selections():
         st.sidebar.warning('Please enter a valid number for temperature')
         temperature = st.session_state.temperature
     
-    st.session_state.page_selection = page_selection
     st.session_state.model_selection = model_selection
     st.session_state.temperature = temperature
     
-    return page_selection, model_selection, temperature
+    return model_selection, temperature
+
+def display_dashboard():
+    st.title('Chatbot Garden Dashboard')
+    
+    col1, col2 = st.columns(2)
+    
+    for idx, (title, page) in enumerate(PAGES.items()):
+        with col1 if idx % 2 == 0 else col2:
+            if card(title=title, text="Click to open this chatbot", key=f"card_{idx}"):
+                st.session_state.page_selection = title
 
 def main():
-    st.set_page_config(page_title="Gipapa Chatbot POC", page_icon="🦜")
+    st.set_page_config(page_title="Gipapa Chatbot POC", page_icon="🦜", layout="wide")
     
     initialize_session_state()
-    page_selection, model_selection, temperature = sidebar_selections()
+    model_selection, temperature = sidebar_selections()
     
     GROQ_SETTING = {
         'API_KEY': os.getenv("GROQ-token"),
@@ -70,8 +74,15 @@ def main():
         'TEMPERATURE': str(temperature)
     }
     
-    page = PAGES[page_selection]
-    page.app(GROQ_SETTING)
+    if st.session_state.page_selection is None:
+        display_dashboard()
+    else:
+        if st.button("Back to Dashboard"):
+            st.session_state.page_selection = None
+            st.experimental_rerun()
+        
+        page = PAGES[st.session_state.page_selection]
+        page.app(GROQ_SETTING)
 
 if __name__ == "__main__":
     main()
