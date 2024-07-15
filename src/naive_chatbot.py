@@ -4,11 +4,11 @@ import openai, os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 
-def app(GROQ_SETTING):
+def app():
 
-    API_KEY = GROQ_SETTING['API_KEY']
-    MODEL = GROQ_SETTING['MODEL']
-    TEMPERATURE= GROQ_SETTING['TEMPERATURE']
+    API_KEY = st.session_state.groq_setting['API_KEY']
+    MODEL = st.session_state.groq_setting['MODEL']
+    TEMPERATURE= st.session_state.groq_setting['TEMPERATURE']
 
     response = False
     
