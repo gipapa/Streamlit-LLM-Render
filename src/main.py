@@ -99,7 +99,7 @@ def main():
             st.experimental_rerun()
         
         page = PAGES[st.session_state.page_selection]['module']
-        page.app(st.session_state.groq_setting)
+        page.app()
 
 if __name__ == "__main__":
     main()
