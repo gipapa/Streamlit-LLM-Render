@@ -10,10 +10,10 @@ from langchain_groq import ChatGroq
 import streamlit as st
 import os
 
-def app(GROQ_SETTING):        
-    API_KEY = GROQ_SETTING['API_KEY']
-    MODEL = GROQ_SETTING['MODEL']
-    TEMPERATURE= GROQ_SETTING['TEMPERATURE']
+def app():        
+    API_KEY = st.session_state.groq_setting['API_KEY']
+    MODEL = st.session_state.groq_setting['MODEL']
+    TEMPERATURE= st.session_state.groq_setting['TEMPERATURE']
 
     st.title('Chatbot with search and momery')
     st.write("🦜LangChain")
