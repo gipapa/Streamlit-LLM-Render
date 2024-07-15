@@ -34,10 +34,10 @@ def initialize_session_state():
         st.session_state.temperature = 0.5
     update_groq_setting()
 
-def sidebar_selections():
-    st.sidebar.title('Setting')
+def sidebar_selections():    
     
     if st.session_state.page_selection:
+        st.sidebar.title('Setting')
         model_selection = st.sidebar.selectbox('Language model:', 
                                                list(MODELS.keys()),
                                                index=list(MODELS.keys()).index(st.session_state.model_selection),
