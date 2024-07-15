@@ -5,7 +5,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 
 def app():
-
+    if 'groq_setting' not in st.session_state:
+        st.error("GROQ settings not found. Please configure the settings in the main app.")
+        return
     API_KEY = st.session_state.groq_setting['API_KEY']
     MODEL = st.session_state.groq_setting['MODEL']
     TEMPERATURE= st.session_state.groq_setting['TEMPERATURE']

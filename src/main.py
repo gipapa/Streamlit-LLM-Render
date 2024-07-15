@@ -32,8 +32,7 @@ def initialize_session_state():
         st.session_state.model_selection = list(MODELS.keys())[0]
     if 'temperature' not in st.session_state:
         st.session_state.temperature = 0.5
-    if 'groq_setting' not in st.session_state:
-        st.session_state.groq_setting = {}
+    update_groq_setting()
 
 def sidebar_selections():
     st.sidebar.title('Setting')
